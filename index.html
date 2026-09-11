@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>A message from the Penmars</title>
+<meta name="description" content="Press play. Sound on.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A message from the Penmars">
+<meta property="og:description" content="Press play. Sound on.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --midnight: #0B1026;
+    --midnight-2: #161E45;
+    --gold: #E8B84B;
+    --gold-soft: #F6DC9A;
+    --cranberry: #C8283C;
+    --cranberry-deep: #9E1B2E;
+    --pine: #1E6B4F;
+    --blue: #1B4FA0;
+    --cream: #FDF6E3;
+    --paper: #FFFBF0;
+    --ink: #221C16;
+    --muted: #6B5F52;
+    --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+    --sans: "Poppins", "Helvetica Neue", Arial, sans-serif;
+    --hand: "Caveat", "Bradley Hand", "Segoe Print", cursive;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  img, video { max-width: 100%; display: block; }
+  [hidden] { display: none !important; }
+  button { font: inherit; cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(1.5px 1.5px at 12% 22%, #fff9 50%, transparent 51%),
+      radial-gradient(1px 1px at 28% 68%, #fff7 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 72% 18%, #fff8 50%, transparent 51%),
+      radial-gradient(1px 1px at 86% 58%, #fff6 50%, transparent 51%),
+      radial-gradient(1px 1px at 52% 40%, #fff5 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 92% 84%, #fff7 50%, transparent 51%),
+      radial-gradient(1px 1px at 6% 88%, #fff6 50%, transparent 51%),
+      radial-gradient(ellipse at 50% 120%, #2a2350 0%, transparent 60%),
+      var(--midnight);
+    color: var(--gold);
+    text-align: center;
+    padding: 30px 24px 34px;
+  }
+  .candles {
+    display: flex; justify-content: center; align-items: flex-end;
+    gap: 9px; height: 44px; margin: 0 auto 14px;
+  }
+  .candle {
+    width: 6px; height: 26px; border-radius: 2px;
+    background: linear-gradient(#f8e8c0, #d9c28d);
+    position: relative;
+  }
+  .candle.shammash { height: 40px; }
+  .candle::before {
+    content: ""; position: absolute; left: 50%; top: -13px;
+    width: 8px; height: 12px; margin-left: -4px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    background: radial-gradient(circle at 50% 70%, #fff6d6 0 25%, var(--gold) 45%, #e0782b 80%);
+    box-shadow: 0 0 12px 3px #e8b84b66;
+    animation: flicker 2.4s ease-in-out infinite;
+    transform-origin: 50% 100%;
+  }
+  .candle:nth-child(2n)::before { animation-delay: -.7s; }
+  .candle:nth-child(3n)::before { animation-delay: -1.3s; }
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+    30% { transform: scale(1.08, .94) rotate(2deg); opacity: .9; }
+    60% { transform: scale(.94, 1.06) rotate(-1deg); opacity: 1; }
+  }
+  .kicker {
+    font-family: var(--serif); font-style: italic;
+    font-size: 17px; letter-spacing: .02em;
+    color: var(--gold-soft); margin: 0 0 6px;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 900;
+    font-size: clamp(40px, 11vw, 76px);
+    line-height: .95; letter-spacing: -.01em;
+    margin: 0;
+    background: linear-gradient(180deg, #FBE7A6 0%, var(--gold) 45%, #B8862B 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero .at {
+    font-family: var(--serif); font-size: 22px; color: var(--gold-soft);
+    margin: 4px 0 18px;
+  }
+  .when {
+    display: inline-block;
+    font-family: var(--sans); font-weight: 800;
+    font-size: clamp(16px, 4.6vw, 22px); line-height: 1.25;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--midnight); background: var(--gold);
+    padding: 12px 20px; border-radius: 6px;
+    transform: rotate(-1.5deg);
+  }
+  .when span { display: block; white-space: nowrap; }
+  .when .time { font-size: 1.5em; letter-spacing: .04em; }
+
+  /* ---------- Screen 1: the envelope ---------- */
+  .intro {
+    min-height: 100vh; min-height: 100dvh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 40px 24px calc(40px + env(safe-area-inset-bottom));
+    background:
+      radial-gradient(1.5px 1.5px at 12% 22%, #fff9 50%, transparent 51%),
+      radial-gradient(1px 1px at 28% 68%, #fff7 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 72% 18%, #fff8 50%, transparent 51%),
+      radial-gradient(1px 1px at 86% 58%, #fff6 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 92% 84%, #fff7 50%, transparent 51%),
+      radial-gradient(1px 1px at 6% 88%, #fff6 50%, transparent 51%),
+      radial-gradient(ellipse at 50% 38%, #e8b84b1f 0%, transparent 45%),
+      var(--midnight);
+    color: var(--gold-soft);
+  }
+  .intro .lone-candle { width: 40px; height: 120px; overflow: visible; }
+  .intro .lone-candle .fl {
+    transform-box: fill-box; transform-origin: 50% 100%;
+    animation: flicker 2.4s ease-in-out infinite;
+    filter: drop-shadow(0 0 14px #e8b84baa);
+  }
+  .intro h1 {
+    font-family: var(--serif); font-weight: 400; font-style: italic;
+    font-size: clamp(34px, 9.5vw, 56px); line-height: 1.12; letter-spacing: .01em;
+    color: var(--gold); margin: 30px 0 40px;
+  }
+  .intro h1 b { font-style: normal; font-weight: 900; display: block; }
+  .play-big {
+    width: 104px; height: 104px; border-radius: 50%; border: 0;
+    display: grid; place-items: center;
+    background: var(--gold); color: var(--midnight);
+    box-shadow: 0 0 0 0 #e8b84b66, 0 12px 40px -8px #000c;
+    animation: ring 2.4s ease-out infinite;
+    transition: transform .15s ease;
+  }
+  .play-big:hover { transform: scale(1.06); }
+  .play-big svg { width: 44px; height: 44px; margin-left: 6px; }
+  @keyframes ring { 0% { box-shadow: 0 0 0 0 #e8b84b66, 0 12px 40px -8px #000c; } 80%, 100% { box-shadow: 0 0 0 26px #e8b84b00, 0 12px 40px -8px #000c; } }
+  .intro .hint { margin: 18px 0 0; font-size: 15px; letter-spacing: .06em; }
+  .intro .skip { margin-top: 44px; font-size: 15px; }
+
+  /* ---------- Screen 2: the video ---------- */
+  .player {
+    position: fixed; inset: 0; z-index: 5; background: #000;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .player video, .player iframe {
+    width: 100%; height: 100%; border: 0; display: block;
+    object-fit: contain; background: #000;
+  }
+  .skip-corner {
+    position: absolute; z-index: 2;
+    top: calc(12px + env(safe-area-inset-top)); right: 12px;
+    border: 1px solid #ffffff40; background: #000000a0; color: #fff;
+    border-radius: 999px; padding: 8px 16px; font-weight: 600; font-size: 14px;
+  }
+  .player .continue {
+    position: absolute; z-index: 2; left: 50%; transform: translateX(-50%);
+    bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+  .player .continue:hover, .player .continue:active { transform: translateX(-50%); }
+
+  /* ---------- Screen 3 ---------- */
+  .again {
+    display: inline-block; margin-top: 18px;
+    border: 0; background: none; padding: 6px;
+    color: var(--gold-soft); font-size: 14px; font-weight: 600;
+    text-decoration: underline; text-underline-offset: 4px; text-decoration-color: #f6dc9a66;
+  }
+  .again:hover { color: var(--gold); }
+  .fade-in { animation: fadeIn .7s ease both; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* ---------- Hat CTA ---------- */
+  .hat-cta {
+    background: var(--cranberry);
+    color: var(--cream);
+    text-align: center;
+    padding: 56px 24px 60px;
+    position: relative;
+  }
+  .hat-cta::before, .hat-cta::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 14px;
+    background: repeating-linear-gradient(90deg, var(--gold) 0 14px, transparent 14px 28px);
+    opacity: .9;
+  }
+  .hat-cta::before { top: 0; }
+  .hat-cta::after { bottom: 0; }
+  .eyebrow {
+    font-weight: 800; font-size: 13px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--gold-soft); margin: 0 0 8px;
+  }
+  .hat-cta h2 {
+    font-family: var(--sans); font-weight: 800;
+    font-size: clamp(34px, 9vw, 52px); line-height: 1.05;
+    margin: 0 0 14px; transform: rotate(-2deg);
+  }
+  .hat-cta p.lede { max-width: 30em; margin: 0 auto 28px; font-size: 17px; }
+  .btn-gold {
+    border: 0; border-radius: 999px;
+    background: var(--gold); color: var(--midnight);
+    font-weight: 800; font-size: 18px; letter-spacing: .02em;
+    padding: 16px 32px;
+    box-shadow: 0 5px 0 #a87a22, 0 10px 24px -6px #0006;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #a87a22, 0 14px 28px -8px #0006; }
+  .btn-gold:active { transform: translateY(4px); box-shadow: 0 1px 0 #a87a22, 0 4px 10px -4px #0006; }
+  .hat-cta .fineprint { font-size: 14px; opacity: .85; max-width: 26em; margin: 22px auto 0; }
+
+  /* ---------- Details ---------- */
+  .details { padding: 56px 20px 24px; max-width: 980px; margin: 0 auto; }
+  .details > h2 {
+    font-family: var(--serif); font-weight: 900; font-size: clamp(30px, 7vw, 40px);
+    text-align: center; margin: 0 0 32px;
+  }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 18px; }
+  .card {
+    background: #fff; border-radius: 14px; padding: 22px 22px 20px;
+    border-top: 8px solid var(--c, var(--pine));
+    box-shadow: 0 1px 0 #0000000d, 0 10px 30px -18px #0b102655;
+  }
+  .card h3 {
+    font-weight: 800; font-size: 13px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--c, var(--pine)); margin: 0 0 8px;
+  }
+  .card p { margin: 0 0 10px; }
+  .card p:last-child { margin-bottom: 0; }
+  .card .aside { color: var(--muted); font-size: 15px; font-style: italic; }
+  .card ol { margin: 0 0 12px; padding-left: 1.3em; }
+  .card ol li { margin-bottom: 6px; }
+  .card ol li::marker { font-weight: 800; color: var(--cranberry); }
+  .card ul { margin: 0 0 12px; padding-left: 1.1em; }
+  .card ul li { margin-bottom: 3px; }
+  .card.wide { grid-column: 1 / -1; }
+  @media (min-width: 640px) { .card.wide .cols { columns: 2; column-gap: 32px; } .card.wide .cols > * { break-inside: avoid; } }
+
+  .todo { background: #fff1b8; outline: 1px dashed #c99a1a; border-radius: 4px; padding: 0 4px; }
+  .hero .todo { background: #e8b84b33; color: var(--gold-soft); outline-color: var(--gold); }
+
+  footer {
+    text-align: center; padding: 40px 24px 64px;
+    font-family: var(--serif); font-size: clamp(22px, 5.4vw, 30px); line-height: 1.3;
+  }
+  footer em { color: var(--cranberry); font-style: italic; }
+
+  /* ---------- Dialog ---------- */
+  dialog {
+    border: 0; padding: 0;
+    width: min(440px, calc(100vw - 24px));
+    max-height: calc(100dvh - 24px);
+    border-radius: 22px;
+    background:
+      radial-gradient(ellipse at 50% 0%, #26306a 0%, transparent 60%),
+      var(--midnight);
+    color: var(--cream);
+    box-shadow: 0 30px 80px -10px #000c;
+    overflow: auto;
+  }
+  dialog::backdrop { background: #0b1026cc; backdrop-filter: blur(3px); }
+  dialog[open] { animation: pop .28s cubic-bezier(.3,1.4,.5,1); }
+  @keyframes pop { from { transform: scale(.92); opacity: 0; } to { transform: none; opacity: 1; } }
+  .dlg-inner { padding: 28px 24px 26px; text-align: center; position: relative; }
+  .close {
+    position: absolute; top: 10px; right: 10px;
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 0; background: #ffffff14; color: var(--gold-soft);
+    font-size: 24px; line-height: 1;
+  }
+  .close:hover { background: #ffffff26; }
+  dialog h2 {
+    font-family: var(--serif); font-weight: 900; color: var(--gold);
+    font-size: 32px; line-height: 1.1; margin: 6px 0 8px;
+  }
+  dialog .sub { color: #e9e2cf; font-size: 15px; margin: 0 auto 22px; max-width: 22em; }
+  .names { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .name-btn {
+    border: 2px solid #ffffff22; background: #ffffff0d; color: var(--cream);
+    border-radius: 12px; padding: 14px 6px;
+    font-weight: 600; font-size: 16px;
+    transition: background .15s, border-color .15s, transform .15s;
+  }
+  .name-btn:hover { background: #e8b84b22; border-color: var(--gold); transform: translateY(-1px); }
+  .row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+  .btn-ghost {
+    border: 2px solid #ffffff33; background: transparent; color: var(--cream);
+    border-radius: 999px; padding: 12px 22px; font-weight: 600; font-size: 16px;
+  }
+  .btn-ghost:hover { border-color: var(--gold-soft); }
+  .linkish {
+    border: 0; background: none; color: var(--gold-soft); text-decoration: underline;
+    text-underline-offset: 3px; font-size: 14px; padding: 6px; margin-top: 10px;
+  }
+  .swear { font-size: 64px; line-height: 1; margin: 4px 0 10px; }
+
+  /* ---------- Hat stage ---------- */
+  .stage {
+    position: relative; width: 280px; height: 360px; margin: 0 auto;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hat {
+    position: absolute; left: 0; top: 80px; width: 280px; height: 280px;
+    border: 0; padding: 0; background: none;
+    transform-origin: 50% 90%;
+  }
+  .hat svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+  .hat .back { z-index: 1; }
+  .hat .front { z-index: 3; }
+  .hat:not(:disabled):hover { filter: drop-shadow(0 0 18px #e8b84b55); }
+  .hat:disabled { cursor: default; }
+  .hat.idle { animation: bob 2.8s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-5px) rotate(-1deg); } }
+  .hat.idle .loose { animation: rustle 2.8s ease-in-out infinite; }
+  .hat.idle .loose:nth-child(2) { animation-delay: -.6s; }
+  .hat.idle .loose:nth-child(3) { animation-delay: -1.2s; }
+  .hat.idle .loose:nth-child(4) { animation-delay: -1.8s; }
+  .hat.shake .loose { animation: rustle .18s linear infinite; }
+  @keyframes rustle { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+  .loose { transform-box: fill-box; transform-origin: 50% 100%; }
+
+  .slip {
+    position: absolute; left: 50%; top: 150px; z-index: 2;
+    width: 260px; height: 160px; margin-left: -130px;
+    transform: scale(.3); transform-origin: 50% 50%;
+    visibility: hidden;
+    background:
+      linear-gradient(180deg, transparent 49.4%, #d9ccb0 49.5%, #fffdf6 50.6%, transparent 51%),
+      repeating-linear-gradient(180deg, transparent 0 27px, #e7dcc4 27px 28px),
+      var(--paper);
+    border-radius: 4px;
+    box-shadow: 0 1px 0 #0000001a, 0 18px 40px -12px #000a;
+    color: var(--cranberry-deep);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 14px 16px; text-align: center;
+  }
+  .slip.free { z-index: 5; }
+  .slip .for, .slip .who, .slip .star { opacity: 0; transition: opacity .45s ease .1s; }
+  .slip.open .for, .slip.open .who, .slip.open .star { opacity: 1; }
+  .slip .for {
+    font-family: var(--sans); font-weight: 600; font-size: 12px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .slip .who {
+    font-family: var(--hand); font-weight: 700; font-size: 64px; line-height: 1;
+    white-space: nowrap;
+    margin: 4px 0 2px; color: var(--cranberry-deep);
+    transform: rotate(-3deg);
+  }
+  .slip .star { color: var(--gold); font-size: 16px; letter-spacing: .4em; }
+  .tap-hint { margin: 4px 0 0; color: var(--gold-soft); font-size: 15px; min-height: 1.5em; }
+  .tap-hint b { color: var(--gold); }
+
+  .after { animation: rise .5s ease both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .after p { color: #e9e2cf; font-size: 15px; margin: 6px auto 16px; max-width: 24em; }
+  .after p strong { color: var(--gold); }
+
+  .lock-note {
+    font-size: 13px !important; color: #b9b2a0 !important;
+    margin: 16px auto 0 !important; max-width: 22em;
+  }
+  .lock-note::before { content: "🔒 "; }
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+    background: var(--pine); color: var(--cream); font-weight: 600; font-size: 15px;
+    padding: 12px 20px; border-radius: 999px; box-shadow: 0 10px 30px -8px #0008;
+    z-index: 10; max-width: calc(100vw - 32px); text-align: center;
+  }
+  .confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 2147483647; }
+  .confetti i { position: absolute; top: 0; left: 0; width: 9px; height: 14px; border-radius: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .candle::before, .hat.idle, .hat.idle .loose { animation: none; }
+    dialog[open] { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Screen 1: the envelope. Nothing here gives the surprise away. -->
+<section class="intro" id="intro">
+  <svg class="lone-candle" viewBox="0 0 40 120" aria-hidden="true">
+    <g class="fl">
+      <path d="M20 2C26 16 34 22 34 34a14 14 0 0 1-28 0C6 22 14 16 20 2Z" fill="#E8B84B"/>
+      <path d="M20 20c3 7 8 10 8 16a8 8 0 0 1-16 0c0-6 5-9 8-16Z" fill="#FFF3C9"/>
+    </g>
+    <rect x="11" y="52" width="18" height="66" rx="3" fill="#F3E7C8"/>
+    <rect x="11" y="52" width="6" height="66" rx="3" fill="#fff" opacity=".35"/>
+  </svg>
+  <h1>A message from <b>the Penmars</b></h1>
+  <button class="play-big" id="play" type="button" aria-label="Play the message (sound on)">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+  </button>
+  <p class="hint">Tap to play · sound on</p>
+  <button class="linkish skip" id="skip-intro" type="button" hidden>Seen it already? Skip the video</button>
+</section>
+
+<!-- Screen 2: the video -->
+<section class="player" id="player" aria-label="Video" hidden>
+  <video id="invite-video" controls playsinline preload="metadata">
+    <source src="message.mp4" type="video/mp4">
+  </video>
+  <button class="skip-corner" id="skip-video" type="button" hidden>Skip ›</button>
+  <button class="btn-gold continue" id="continue" type="button" hidden>Continue</button>
+</section>
+
+<!-- Screen 3: the hat -->
+<main id="main" hidden>
+<header class="hero">
+  <div class="candles" aria-hidden="true">
+    <span class="candle"></span><span class="candle"></span><span class="candle"></span><span class="candle"></span>
+    <span class="candle shammash"></span>
+    <span class="candle"></span><span class="candle"></span><span class="candle"></span><span class="candle"></span>
+  </div>
+  <h1>Christmakah</h1>
+  <p class="at">at the Penmars</p>
+  <p class="when"><span>Sunday, December 13</span><span class="time">3:00 PM</span></p>
+  <br><button class="again" id="watch-again" type="button">▶ Watch the video again</button>
+</header>
+
+<section class="hat-cta" id="hat">
+  <p class="eyebrow">Secret Santa</p>
+  <h2>And yes, there are rules.</h2>
+  <p class="lede">Everyone draws one name. You make that person one homemade gift. Its only job is to make them feel loved, appreciated, and good about themselves.</p>
+  <button class="btn-gold" id="open-draw" type="button">Reach into the hat</button>
+  <p class="fineprint">Forgot who you got? Come back and pick your name again. The hat always gives the same answer, on any device.</p>
+</section>
+
+<section class="details" aria-labelledby="fine-print-title">
+  <h2 id="fine-print-title">The Fine Print</h2>
+  <div class="cards">
+    <article class="card wide" style="--c: var(--cranberry)">
+      <h3>The Gifts</h3>
+      <div class="cols">
+        <ol>
+          <li><strong>Homemade only.</strong> No exceptions. No gift cards. We will know.</li>
+          <li><strong>One recipient,</strong> drawn from the hat above.</li>
+          <li><strong>One job:</strong> make them feel loved, appreciated, and good about themselves.</li>
+        </ol>
+        <div>
+          <p>Acceptable forms include:</p>
+          <ul>
+            <li>a letter <span class="aside">(if handwritten, make it legible. You know who you are.)</span></li>
+            <li>an AI-generated song about them</li>
+            <li>a drawing of them as a superhero</li>
+            <li>a flip book</li>
+            <li>a papier-mâché of their face</li>
+          </ul>
+          <p>You get the picture. Sign your work or stay anonymous. Your call.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer>
+  The Earth is turning. The food is going.<br><em>Come be together.</em>
+</footer>
+</main>
+
+<dialog id="draw" aria-labelledby="draw-title">
+  <div class="dlg-inner">
+    <button class="close" type="button" data-close aria-label="Close">×</button>
+
+    <!-- Step 1: who are you -->
+    <div data-step="who">
+      <p class="eyebrow">The Hat</p>
+      <h2 id="draw-title">Who's drawing?</h2>
+      <p class="sub">Pick <em>your own</em> name. Peeking at anyone else's is a gift-giving felony.</p>
+      <div class="names" id="names"></div>
+    </div>
+
+    <!-- Step 2: confirm -->
+    <div data-step="confirm" hidden>
+      <div class="swear" aria-hidden="true">🤞</div>
+      <h2>You're <span data-me></span>?</h2>
+      <p class="sub">Pinky swear. Once you reach in, this device is yours for the season. No take-backs.</p>
+      <div class="row">
+        <button class="btn-gold" type="button" id="confirm-yes">Yes, I'm <span data-me></span></button>
+      </div>
+      <button class="linkish" type="button" data-goto="who">Wait, no. Go back.</button>
+    </div>
+
+    <!-- Step 3: the hat -->
+    <div data-step="hat" hidden>
+      <p class="eyebrow" id="hat-eyebrow"></p>
+      <h2 id="hat-title"></h2>
+      <div class="stage">
+        <div class="slip" id="slip" aria-hidden="true">
+          <span class="for">You're making a gift for</span>
+          <span class="who" id="slip-name"></span>
+          <span class="star">✦ ✡ ✦</span>
+        </div>
+        <button class="hat idle" id="hat-btn" type="button" aria-label="Reach into the hat">
+          <svg class="back" viewBox="0 0 240 240" aria-hidden="true">
+            <ellipse cx="120" cy="90" rx="100" ry="22" fill="#1c1c22"/>
+            <ellipse cx="120" cy="90" rx="100" ry="22" fill="none" stroke="#3a3a46" stroke-width="1.5"/>
+            <ellipse cx="120" cy="90" rx="70" ry="14" fill="#050507"/>
+            <g>
+              <g class="loose"><rect x="66" y="66" width="30" height="40" rx="2" fill="#FFFBF0" transform="rotate(-18 81 86)"/><line x1="68" y1="84" x2="94" y2="80" stroke="#d9ccb0" stroke-width="1.5" transform="rotate(-18 81 86)"/></g>
+              <g class="loose"><rect x="92" y="58" width="30" height="46" rx="2" fill="#FFF3D6" transform="rotate(-6 107 81)"/></g>
+              <g class="loose"><rect x="118" y="60" width="30" height="44" rx="2" fill="#FFFBF0" transform="rotate(9 133 82)"/><line x1="120" y1="80" x2="146" y2="82" stroke="#d9ccb0" stroke-width="1.5" transform="rotate(9 133 82)"/></g>
+              <g class="loose"><rect x="142" y="68" width="28" height="38" rx="2" fill="#FFF3D6" transform="rotate(22 156 87)"/></g>
+            </g>
+          </svg>
+          <svg class="front" viewBox="0 0 240 240" aria-hidden="true">
+            <defs>
+              <linearGradient id="crown" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="#0a0a0e"/>
+                <stop offset=".32" stop-color="#3b3b48"/>
+                <stop offset=".5" stop-color="#1d1d25"/>
+                <stop offset="1" stop-color="#050507"/>
+              </linearGradient>
+              <linearGradient id="band" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="#7d1222"/>
+                <stop offset=".32" stop-color="#E0364B"/>
+                <stop offset=".55" stop-color="#C8283C"/>
+                <stop offset="1" stop-color="#6d0f1d"/>
+              </linearGradient>
+              <clipPath id="crown-clip">
+                <path d="M50 90 A70 14 0 0 0 190 90 L182 200 A62 12 0 0 1 58 200 Z"/>
+              </clipPath>
+            </defs>
+            <path d="M50 90 A70 14 0 0 0 190 90 L182 200 A62 12 0 0 1 58 200 Z" fill="url(#crown)"/>
+            <g clip-path="url(#crown-clip)">
+              <path d="M40 116 Q120 144 200 116 L200 140 Q120 168 40 140 Z" fill="url(#band)"/>
+              <path d="M40 116 Q120 144 200 116" fill="none" stroke="#E8B84B" stroke-width="2"/>
+              <path d="M40 140 Q120 168 200 140" fill="none" stroke="#E8B84B" stroke-width="2"/>
+            </g>
+            <!-- sprig + star on the band -->
+            <g transform="translate(150 140)">
+              <path d="M0 0 l-10 -10 M0 0 l-14 -2 M0 0 l-6 -14" stroke="#2f8a63" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="-2" cy="-2" r="4" fill="#E8B84B"/>
+            </g>
+            <path d="M20 90 A100 22 0 0 0 220 90 L190 90 A70 14 0 0 1 50 90 Z" fill="#141419"/>
+            <path d="M20 90 A100 22 0 0 0 220 90" fill="none" stroke="#3a3a46" stroke-width="1.5"/>
+            <ellipse cx="120" cy="206" rx="70" ry="10" fill="#000" opacity=".25" transform="translate(0 14)"/>
+          </svg>
+        </button>
+      </div>
+      <p class="tap-hint" id="tap-hint" aria-live="polite">Tap the hat.</p>
+
+      <div class="after" id="after" hidden>
+        <p id="reveal-line" class="visually-plain"></p>
+        <p>Make them something that makes them feel <strong>loved, appreciated, and good about themselves</strong>. Homemade only. We will know.</p>
+        <div class="row">
+          <button class="btn-gold" type="button" data-close>Got it</button>
+        </div>
+        <p class="lock-note" id="lock-note"></p>
+      </div>
+
+      <button class="linkish" type="button" id="not-me-pre" hidden>Not <span data-me></span>? Switch names</button>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+// The draw was generated once by draw.py and is baked in here, so every device
+// gets the same answer. Values are lightly obfuscated so nobody spoils it by
+// glancing at the page source. Re-run draw.py to reshuffle.
+// @@DRAW-START
+const DRAW = {
+  "salt": "8f6acafeca03",
+  "map": {
+    "John": "exRfEg==",
+    "Natalie": "fANADg0=",
+    "Marina": "cgNXDw0E",
+    "Jeanne": "fQpfEgI=",
+    "Cris": "dAdDEwYP",
+    "Lauren": "dQdECA0A",
+    "Elisa": "cgleDw==",
+    "Erynne": "dgdCAA8IAw==",
+    "Devon": "fRRPDw0E"
+  }
+};
+// @@DRAW-END
+
+(function () {
+  const PREVIEW = new URLSearchParams(location.search).has("preview");
+  const LOCK_KEY = "penmars.lock";
+  // SHA-256 of the organizer's reset code. Visiting ?unlock=<code> frees a locked device.
+  const UNLOCK_HASH = "46ff1b3f101318c31530f58243b8164caecd9eac89ecef965435e892f5624a37";
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const names = Object.keys(DRAW.map);
+  const dlg = document.getElementById("draw");
+  const steps = dlg.querySelectorAll("[data-step]");
+  const namesEl = document.getElementById("names");
+  const hatBtn = document.getElementById("hat-btn");
+  const slip = document.getElementById("slip");
+  const slipName = document.getElementById("slip-name");
+  const hint = document.getElementById("tap-hint");
+  const after = document.getElementById("after");
+  const revealLine = document.getElementById("reveal-line");
+  const notMePre = document.getElementById("not-me-pre");
+  const openBtn = document.getElementById("open-draw");
+
+  let me = null;
+  let busy = false;
+
+  function recipientFor(giver) {
+    if (PREVIEW) return "Someone";
+    const key = DRAW.salt + giver;
+    const raw = atob(DRAW.map[giver]);
+    let out = "";
+    for (let i = 0; i < raw.length; i++) {
+      out += String.fromCharCode(raw.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+    }
+    return out;
+  }
+
+  // Once someone reveals their slip, this browser is locked to that name.
+  // Stored in both localStorage and a cookie so clearing one doesn't free it.
+  function readCookie() {
+    const m = document.cookie.match(/(?:^|; )penmars_lock=([^;]*)/);
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+  function locked() {
+    let n = null;
+    try { n = localStorage.getItem(LOCK_KEY); } catch (e) {}
+    if (!names.includes(n)) n = readCookie();
+    if (!names.includes(n)) return null;
+    lock(n); // re-sync whichever store was missing
+    return n;
+  }
+  function lock(n) {
+    try { localStorage.setItem(LOCK_KEY, n); } catch (e) {}
+    document.cookie = `penmars_lock=${encodeURIComponent(n)}; max-age=31536000; path=/; SameSite=Lax`;
+  }
+  function unlock() {
+    try { localStorage.removeItem(LOCK_KEY); } catch (e) {}
+    document.cookie = "penmars_lock=; max-age=0; path=/; SameSite=Lax";
+  }
+
+  function setMe(n) {
+    me = n;
+    dlg.querySelectorAll("[data-me]").forEach(el => { el.textContent = n || ""; });
+  }
+
+  function show(step) {
+    steps.forEach(s => { s.hidden = s.dataset.step !== step; });
+    const first = dlg.querySelector(`[data-step="${step}"] button:not([hidden])`);
+    if (step === "hat") hatBtn.focus(); else if (first) first.focus();
+  }
+
+  function resetHat() {
+    busy = false;
+    slip.getAnimations().forEach(a => a.cancel());
+    hatBtn.getAnimations().forEach(a => a.cancel());
+    slip.className = "slip";
+    slip.style.visibility = "hidden";
+    hatBtn.className = "hat idle";
+    hatBtn.disabled = false;
+    hatBtn.style.opacity = "";
+    after.hidden = true;
+    notMePre.hidden = !!locked();
+    hint.innerHTML = "Tap the hat.";
+  }
+
+  function goHat(returning) {
+    resetHat();
+    document.getElementById("hat-eyebrow").textContent = returning ? "Welcome back" : "The Hat";
+    document.getElementById("hat-title").textContent = returning ? `Need a reminder, ${me}?` : `Reach in, ${me}.`;
+    show("hat");
+  }
+
+  // Name grid
+  names.forEach(n => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "name-btn";
+    b.textContent = n;
+    b.addEventListener("click", () => { setMe(n); show("confirm"); });
+    namesEl.appendChild(b);
+  });
+
+  document.getElementById("confirm-yes").addEventListener("click", () => goHat(false));
+
+  // Switching is only possible before the slip is revealed.
+  notMePre.addEventListener("click", () => {
+    if (locked()) return;
+    setMe(null); resetHat(); show("who");
+  });
+
+  dlg.querySelectorAll("[data-goto]").forEach(b => b.addEventListener("click", () => show(b.dataset.goto)));
+  dlg.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", () => dlg.close()));
+  dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener("close", () => { resetHat(); updateCta(); });
+
+  function updateCta() {
+    const r = locked();
+    openBtn.textContent = r ? `Remind me who I have` : "Reach into the hat";
+  }
+
+  openBtn.addEventListener("click", () => {
+    const r = locked();
+    dlg.showModal();
+    if (r) { setMe(r); goHat(true); } else { setMe(null); show("who"); }
+  });
+
+  // The pull
+  hatBtn.addEventListener("click", pull);
+
+  async function pull() {
+    if (busy || !me) return;
+    busy = true;
+    hatBtn.disabled = true;
+    notMePre.hidden = true;
+    const who = recipientFor(me);
+    if (!PREVIEW) lock(me);
+    document.getElementById("lock-note").textContent = PREVIEW
+      ? "Preview mode: nothing is saved on this device."
+      : `This device is locked to ${me}. Tapped the wrong name? Tell Elisa.`;
+    slipName.textContent = who;
+    slipName.style.fontSize = who.length > 8 ? `${Math.floor(64 * 8 / who.length)}px` : "";
+    revealLine.textContent = `${me}, you're making a gift for ${who}.`;
+    revealLine.className = "sr-only";
+
+    if (reduced) {
+      hatBtn.className = "hat";
+      hatBtn.style.opacity = ".25";
+      slip.style.visibility = "visible";
+      slip.classList.add("free", "open");
+      slip.style.transform = "translateY(-120px) scale(1) rotate(-2deg)";
+      return finish();
+    }
+
+    hint.textContent = "Rummaging…";
+    hatBtn.className = "hat shake";
+    await hatBtn.animate([
+      { transform: "rotate(0)" }, { transform: "rotate(-7deg)" }, { transform: "rotate(6deg)" },
+      { transform: "rotate(-5deg)" }, { transform: "rotate(4deg)" }, { transform: "rotate(-2deg)" },
+      { transform: "rotate(0)" }
+    ], { duration: 900, easing: "ease-in-out" }).finished;
+    hatBtn.className = "hat";
+
+    hint.textContent = "Got one…";
+    slip.style.visibility = "visible";
+    await slip.animate([
+      { transform: "translateY(0) scale(.3) rotate(-4deg)" },
+      { transform: "translateY(-150px) scale(.34) rotate(10deg)" }
+    ], { duration: 950, easing: "cubic-bezier(.2,.7,.2,1)", fill: "forwards" }).finished;
+
+    slip.classList.add("free");
+    hatBtn.animate([{ opacity: 1, transform: "translateY(0)" }, { opacity: .25, transform: "translateY(24px)" }],
+      { duration: 600, easing: "ease-out", fill: "forwards" });
+    await slip.animate([
+      { transform: "translateY(-150px) scale(.34) rotate(10deg)" },
+      { transform: "translateY(-130px) scale(1.04, .55) rotate(-4deg)", offset: .55 },
+      { transform: "translateY(-120px) scale(1) rotate(-2deg)" }
+    ], { duration: 800, easing: "cubic-bezier(.3,1.3,.5,1)", fill: "forwards" }).finished;
+
+    slip.classList.add("open");
+    confetti();
+    finish();
+  }
+
+  function finish() {
+    hint.innerHTML = "";
+    after.hidden = false;
+    after.querySelector(".btn-gold").focus();
+  }
+
+  function confetti() {
+    const colors = ["#E8B84B", "#C8283C", "#1E6B4F", "#1B4FA0", "#FDF6E3", "#F6DC9A"];
+    const layer = document.createElement("div");
+    layer.className = "confetti";
+    // Inside the dialog so it renders above the modal's top layer.
+    dlg.appendChild(layer);
+    const r = slip.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const anims = [];
+    for (let i = 0; i < 70; i++) {
+      const p = document.createElement("i");
+      p.style.background = colors[i % colors.length];
+      if (i % 5 === 0) { p.style.borderRadius = "50%"; p.style.width = p.style.height = "9px"; }
+      layer.appendChild(p);
+      const ang = Math.random() * Math.PI * 2;
+      const dist = 90 + Math.random() * 180;
+      const dx = Math.cos(ang) * dist, dy = Math.sin(ang) * dist - 120;
+      const spin = (Math.random() * 720 - 360) | 0;
+      anims.push(p.animate([
+        { transform: `translate(${cx}px, ${cy}px) rotate(0)`, opacity: 1 },
+        { transform: `translate(${cx + dx}px, ${cy + dy}px) rotate(${spin / 2}deg)`, opacity: 1, offset: .35 },
+        { transform: `translate(${cx + dx * 1.2}px, ${cy + dy + 420}px) rotate(${spin}deg)`, opacity: 0 }
+      ], { duration: 1800 + Math.random() * 900, easing: "cubic-bezier(.15,.6,.35,1)", fill: "forwards" }).finished);
+    }
+    Promise.all(anims).then(() => layer.remove());
+  }
+
+  // ----- Screens: envelope -> video -> hat -----
+  // Prefer message.mp4. Until it exists, fall back to the Claude Design
+  // standalone export (~18 MB), which only loads once someone taps play.
+  const STANDALONE_END = 108.2; // seconds; the export's runtime
+  const SEEN_KEY = "penmars.seen";
+  const intro = document.getElementById("intro");
+  const player = document.getElementById("player");
+  const main = document.getElementById("main");
+  const video = document.getElementById("invite-video");
+  const skipIntro = document.getElementById("skip-intro");
+  const skipVideo = document.getElementById("skip-video");
+  const continueBtn = document.getElementById("continue");
+  let mp4Missing = false;
+  let frame = null, pollTimer = null, fallbackTimer = null, advanceTimer = null;
+
+  const src = video.querySelector("source");
+  src.addEventListener("error", () => { mp4Missing = true; });
+  if (video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) mp4Missing = true;
+
+  function seen() {
+    try { if (localStorage.getItem(SEEN_KEY) === "1") return true; } catch (e) {}
+    return !!locked();
+  }
+  function markSeen() { try { localStorage.setItem(SEEN_KEY, "1"); } catch (e) {} }
+
+  function showScreen(name) {
+    intro.hidden = name !== "intro";
+    player.hidden = name !== "video";
+    main.hidden = name !== "hat";
+    const el = { intro, video: player, hat: main }[name];
+    el.classList.remove("fade-in"); void el.offsetWidth; el.classList.add("fade-in");
+    window.scrollTo(0, 0);
+  }
+
+  function stopVideo() {
+    clearInterval(pollTimer); clearTimeout(fallbackTimer); clearTimeout(advanceTimer);
+    video.pause();
+    if (frame) { frame.remove(); frame = null; } // also stops its soundtrack
+    video.hidden = false;
+    continueBtn.hidden = true;
+  }
+
+  function goHat() { stopVideo(); markSeen(); showScreen("hat"); }
+
+  function videoEnded() {
+    markSeen();
+    clearInterval(pollTimer);
+    advanceTimer = setTimeout(goHat, 2500); // let the end card land first
+  }
+
+  function startStandalone() {
+    video.hidden = true;
+    // The animation player remembers its playhead; always start from the top.
+    const playheads = () => Object.keys(localStorage).filter(k => k.endsWith(":t"));
+    try { playheads().forEach(k => localStorage.removeItem(k)); } catch (e) {}
+    frame = document.createElement("iframe");
+    frame.src = "video-standalone.html";
+    frame.title = "A message from the Penmars";
+    frame.allow = "autoplay; fullscreen";
+    player.prepend(frame);
+    // It can't tell us when it ends, but it saves its playhead as it goes.
+    pollTimer = setInterval(() => {
+      let t = 0;
+      try { playheads().forEach(k => { t = Math.max(t, parseFloat(localStorage.getItem(k)) || 0); }); } catch (e) {}
+      if (t >= STANDALONE_END - 0.35) videoEnded();
+    }, 400);
+    // Safety net in case storage is blocked and the end is never detected.
+    fallbackTimer = setTimeout(() => { continueBtn.hidden = false; }, (STANDALONE_END + 6) * 1000);
+  }
+
+  function startVideo() {
+    stopVideo();
+    showScreen("video");
+    skipVideo.hidden = !seen();
+    if (mp4Missing) return startStandalone();
+    video.currentTime = 0;
+    video.play().catch(() => { if (mp4Missing || video.error) startStandalone(); });
+  }
+
+  video.addEventListener("ended", videoEnded);
+  document.getElementById("play").addEventListener("click", startVideo);
+  document.getElementById("watch-again").addEventListener("click", startVideo);
+  skipIntro.addEventListener("click", goHat);
+  skipVideo.addEventListener("click", goHat);
+  continueBtn.addEventListener("click", goHat);
+
+  skipIntro.hidden = !seen();
+  showScreen("intro");
+
+  // Organizer reset: ?unlock=<code>
+  const unlockCode = new URLSearchParams(location.search).get("unlock");
+  if (unlockCode !== null) {
+    history.replaceState(null, "", location.pathname + location.hash);
+    (async () => {
+      let ok = false;
+      try {
+        const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(unlockCode.trim()));
+        ok = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("") === UNLOCK_HASH;
+      } catch (e) {}
+      if (ok) unlock();
+      const toast = document.getElementById("toast");
+      toast.textContent = ok ? "This device is unlocked. Pick your name again." : "That reset code didn't work.";
+      toast.hidden = false;
+      setTimeout(() => { toast.hidden = true; }, 5000);
+      updateCta();
+    })();
+  }
+
+  updateCta();
+})();
+</script>
+<style>
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+</style>
+</body>
+</html>
