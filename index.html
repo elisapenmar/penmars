@@ -816,7 +816,7 @@ const DRAW = {
   // ----- Screens: envelope -> video -> hat -----
   // Prefer message.mp4. Until it exists, fall back to the Claude Design
   // standalone export (~18 MB), which only loads once someone taps play.
-  const STANDALONE_END = 108.2; // seconds; the export's runtime
+  const STANDALONE_END = 117.6; // seconds; fallback if the export's scene list can't be read
   const SEEN_KEY = "penmars.seen";
   const intro = document.getElementById("intro");
   const player = document.getElementById("player");
@@ -873,14 +873,28 @@ const DRAW = {
     frame.title = "A message from the Penmars";
     frame.allow = "autoplay; fullscreen";
     player.prepend(frame);
+    // Runtime = sum of the export's scene durations, so re-exports just work.
+    const runtime = () => {
+      try {
+        const sc = frame.contentWindow.OM_SCENES;
+        const list = typeof sc === "string" ? JSON.parse(sc) : sc;
+        const total = list.reduce((sum, x) => sum + (+x.dur || 0), 0);
+        if (total > 0) return total;
+      } catch (e) {}
+      return STANDALONE_END;
+    };
     // It can't tell us when it ends, but it saves its playhead as it goes.
+    let last = 0;
     pollTimer = setInterval(() => {
       let t = 0;
       try { playheads().forEach(k => { t = Math.max(t, parseFloat(localStorage.getItem(k)) || 0); }); } catch (e) {}
-      if (t >= STANDALONE_END - 0.35) videoEnded();
+      const end = runtime();
+      // Ended, or wrapped back to the start (an export left on loop).
+      if (t >= end - 0.35 || (last > end - 3 && t < 2)) return videoEnded();
+      last = t;
     }, 400);
     // Safety net in case storage is blocked and the end is never detected.
-    fallbackTimer = setTimeout(() => { continueBtn.hidden = false; }, (STANDALONE_END + 6) * 1000);
+    fallbackTimer = setTimeout(() => { continueBtn.hidden = false; }, (STANDALONE_END + 8) * 1000);
   }
 
   function startVideo() {
