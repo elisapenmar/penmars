@@ -280,6 +280,7 @@
     box-shadow: 0 30px 80px -10px #000c;
     overflow: auto;
   }
+  dialog { overflow-x: hidden; }
   dialog::backdrop { background: #0b1026cc; backdrop-filter: blur(3px); }
   dialog[open] { animation: pop .28s cubic-bezier(.3,1.4,.5,1); }
   @keyframes pop { from { transform: scale(.92); opacity: 0; } to { transform: none; opacity: 1; } }
@@ -314,37 +315,63 @@
     border: 0; background: none; color: var(--gold-soft); text-decoration: underline;
     text-underline-offset: 3px; font-size: 14px; padding: 6px; margin-top: 10px;
   }
-  .swear { font-size: 64px; line-height: 1; margin: 4px 0 10px; }
+  .swear { font-size: 60px; line-height: 1; margin: 4px 0 10px; }
 
   /* ---------- Hat stage ---------- */
   .stage {
-    position: relative; width: 280px; height: 360px; margin: 0 auto;
+    position: relative; width: 300px; height: 370px; margin: 0 auto;
     -webkit-tap-highlight-color: transparent;
   }
-  .hat {
-    position: absolute; left: 0; top: 80px; width: 280px; height: 280px;
-    border: 0; padding: 0; background: none;
-    transform-origin: 50% 90%;
+  .stage::before { /* spotlight so a black hat reads on midnight */
+    content: ""; position: absolute; left: 50%; top: 120px; width: 380px; height: 280px;
+    transform: translateX(-50%); pointer-events: none;
+    background: radial-gradient(ellipse at 50% 55%, #e8b84b40 0%, #e8b84b14 42%, transparent 70%);
   }
-  .hat svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-  .hat .back { z-index: 1; }
-  .hat .front { z-index: 3; }
-  .hat:not(:disabled):hover { filter: drop-shadow(0 0 18px #e8b84b55); }
-  .hat:disabled { cursor: default; }
-  .hat.idle { animation: bob 2.8s ease-in-out infinite; }
+  .rig { position: absolute; left: 0; top: 150px; width: 300px; height: 206px; transform-origin: 50% 85%; }
+  .rig.idle { animation: bob 2.8s ease-in-out infinite; }
   @keyframes bob { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-5px) rotate(-1deg); } }
-  .hat.idle .loose { animation: rustle 2.8s ease-in-out infinite; }
-  .hat.idle .loose:nth-child(2) { animation-delay: -.6s; }
-  .hat.idle .loose:nth-child(3) { animation-delay: -1.2s; }
-  .hat.idle .loose:nth-child(4) { animation-delay: -1.8s; }
-  .hat.shake .loose { animation: rustle .18s linear infinite; }
-  @keyframes rustle { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-  .loose { transform-box: fill-box; transform-origin: 50% 100%; }
+  .hat-back, .hat-front {
+    position: absolute; left: 0; top: 0; width: 300px; height: auto; max-width: none;
+    pointer-events: none; transition: opacity .6s ease;
+  }
+  .hat-back { z-index: 1; filter: drop-shadow(0 16px 22px #000c); }
+  .hat-front { z-index: 4; }
+  .peek {
+    position: absolute; z-index: 2; width: 21px; height: 60px; border-radius: 2px;
+    background: linear-gradient(#fdf7e6 0%, #e6d9b8 38%, #5e5646 100%); /* fades into the hat's shadow */
+    box-shadow: inset 0 0 0 1px #0000001f;
+    transform: rotate(var(--r)); transform-origin: 50% 100%;
+    transition: opacity .6s ease;
+  }
+  .rig.idle .peek { animation: rustle 2.8s ease-in-out infinite; }
+  .rig.idle .peek:nth-of-type(2) { animation-delay: -.9s; }
+  .rig.idle .peek:nth-of-type(3) { animation-delay: -1.8s; }
+  .rig.shake .peek { animation: rustle .18s linear infinite; }
+  @keyframes rustle { 0%,100% { transform: rotate(var(--r)) translateY(0); } 50% { transform: rotate(var(--r)) translateY(-5px); } }
+  .rig.dim .hat-back, .rig.dim .hat-front, .rig.dim .peek { opacity: .22; }
+  .wand {
+    position: absolute; z-index: 6; width: 104px; height: auto; right: -22px; top: 24px;
+    transform-origin: 90% 8%; pointer-events: none;
+    filter: drop-shadow(0 8px 14px #000b); transition: opacity .6s ease;
+  }
+  .wand.idle { animation: hover 3.2s ease-in-out infinite; }
+  @keyframes hover { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-6px) rotate(3deg); } }
+  .wand.dim { opacity: .22; }
+  .hat-hit {
+    position: absolute; z-index: 7; left: 0; top: 120px; width: 300px; height: 250px;
+    border: 0; padding: 0; background: none; border-radius: 40%;
+  }
+  .hat-hit:focus-visible { outline: none; }
+  .stage:has(.hat-hit:focus-visible) .hat-back { filter: drop-shadow(0 0 22px #e8b84b88) drop-shadow(0 16px 22px #000c); }
+  .hat-hit:disabled { cursor: default; }
+  .stage:has(.hat-hit:not(:disabled):hover) .hat-back { filter: drop-shadow(0 0 22px #e8b84b66) drop-shadow(0 16px 22px #000c); }
+  .sparks { position: absolute; inset: 0; z-index: 8; pointer-events: none; }
+  .sparks i { position: absolute; left: 0; top: 0; font-style: normal; line-height: 1; color: var(--gold); text-shadow: 0 0 8px #e8b84bcc; }
 
   .slip {
-    position: absolute; left: 50%; top: 150px; z-index: 2;
+    position: absolute; left: 50%; top: 26px; z-index: 3;
     width: 260px; height: 160px; margin-left: -130px;
-    transform: scale(.3); transform-origin: 50% 50%;
+    transform: scale(.3) rotate(9deg); transform-origin: 50% 50%;
     visibility: hidden;
     background:
       linear-gradient(180deg, transparent 49.4%, #d9ccb0 49.5%, #fffdf6 50.6%, transparent 51%),
@@ -356,7 +383,7 @@
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 14px 16px; text-align: center;
   }
-  .slip.free { z-index: 5; }
+  .slip.free { z-index: 9; } /* above the wand once it leaves the hat */
   .slip .for, .slip .who, .slip .star { opacity: 0; transition: opacity .45s ease .1s; }
   .slip.open .for, .slip.open .who, .slip.open .star { opacity: 1; }
   .slip .for {
@@ -393,7 +420,7 @@
   .confetti i { position: absolute; top: 0; left: 0; width: 9px; height: 14px; border-radius: 2px; }
 
   @media (prefers-reduced-motion: reduce) {
-    .candle::before, .hat.idle, .hat.idle .loose { animation: none; }
+    .candle::before, .rig.idle, .rig.idle .peek, .wand.idle { animation: none; }
     dialog[open] { animation: none; }
   }
 </style>
@@ -461,7 +488,7 @@
           <li><strong>One job:</strong> make them feel loved, appreciated, and good about themselves.</li>
         </ol>
         <div>
-          <p>Acceptable forms include:</p>
+          <p>Acceptable forms include but are not limited to:</p>
           <ul>
             <li>a letter <span class="aside">(if handwritten, make it legible. You know who you are.)</span></li>
             <li>an AI-generated song about them</li>
@@ -495,7 +522,7 @@
 
     <!-- Step 2: confirm -->
     <div data-step="confirm" hidden>
-      <div class="swear" aria-hidden="true">🤞</div>
+      <div class="swear" aria-hidden="true">🤝</div>
       <h2>You're <span data-me></span>?</h2>
       <p class="sub">Pinky swear. Once you reach in, this device is yours for the season. No take-backs.</p>
       <div class="row">
@@ -509,57 +536,21 @@
       <p class="eyebrow" id="hat-eyebrow"></p>
       <h2 id="hat-title"></h2>
       <div class="stage">
-        <div class="slip" id="slip" aria-hidden="true">
+        <div class="rig idle" id="rig">
+          <img class="hat-back" src="hat.webp" alt="" width="300" height="206">
+          <span class="peek" style="left:120px;top:20px;--r:-13deg"></span>
+          <span class="peek" style="left:141px;top:12px;--r:3deg"></span>
+          <span class="peek" style="left:162px;top:19px;--r:16deg"></span>
+          <div class="slip" id="slip" aria-hidden="true">
           <span class="for">You're making a gift for</span>
           <span class="who" id="slip-name"></span>
           <span class="star">✦ ✡ ✦</span>
         </div>
-        <button class="hat idle" id="hat-btn" type="button" aria-label="Reach into the hat">
-          <svg class="back" viewBox="0 0 240 240" aria-hidden="true">
-            <ellipse cx="120" cy="90" rx="100" ry="22" fill="#1c1c22"/>
-            <ellipse cx="120" cy="90" rx="100" ry="22" fill="none" stroke="#3a3a46" stroke-width="1.5"/>
-            <ellipse cx="120" cy="90" rx="70" ry="14" fill="#050507"/>
-            <g>
-              <g class="loose"><rect x="66" y="66" width="30" height="40" rx="2" fill="#FFFBF0" transform="rotate(-18 81 86)"/><line x1="68" y1="84" x2="94" y2="80" stroke="#d9ccb0" stroke-width="1.5" transform="rotate(-18 81 86)"/></g>
-              <g class="loose"><rect x="92" y="58" width="30" height="46" rx="2" fill="#FFF3D6" transform="rotate(-6 107 81)"/></g>
-              <g class="loose"><rect x="118" y="60" width="30" height="44" rx="2" fill="#FFFBF0" transform="rotate(9 133 82)"/><line x1="120" y1="80" x2="146" y2="82" stroke="#d9ccb0" stroke-width="1.5" transform="rotate(9 133 82)"/></g>
-              <g class="loose"><rect x="142" y="68" width="28" height="38" rx="2" fill="#FFF3D6" transform="rotate(22 156 87)"/></g>
-            </g>
-          </svg>
-          <svg class="front" viewBox="0 0 240 240" aria-hidden="true">
-            <defs>
-              <linearGradient id="crown" x1="0" x2="1" y1="0" y2="0">
-                <stop offset="0" stop-color="#0a0a0e"/>
-                <stop offset=".32" stop-color="#3b3b48"/>
-                <stop offset=".5" stop-color="#1d1d25"/>
-                <stop offset="1" stop-color="#050507"/>
-              </linearGradient>
-              <linearGradient id="band" x1="0" x2="1" y1="0" y2="0">
-                <stop offset="0" stop-color="#7d1222"/>
-                <stop offset=".32" stop-color="#E0364B"/>
-                <stop offset=".55" stop-color="#C8283C"/>
-                <stop offset="1" stop-color="#6d0f1d"/>
-              </linearGradient>
-              <clipPath id="crown-clip">
-                <path d="M50 90 A70 14 0 0 0 190 90 L182 200 A62 12 0 0 1 58 200 Z"/>
-              </clipPath>
-            </defs>
-            <path d="M50 90 A70 14 0 0 0 190 90 L182 200 A62 12 0 0 1 58 200 Z" fill="url(#crown)"/>
-            <g clip-path="url(#crown-clip)">
-              <path d="M40 116 Q120 144 200 116 L200 140 Q120 168 40 140 Z" fill="url(#band)"/>
-              <path d="M40 116 Q120 144 200 116" fill="none" stroke="#E8B84B" stroke-width="2"/>
-              <path d="M40 140 Q120 168 200 140" fill="none" stroke="#E8B84B" stroke-width="2"/>
-            </g>
-            <!-- sprig + star on the band -->
-            <g transform="translate(150 140)">
-              <path d="M0 0 l-10 -10 M0 0 l-14 -2 M0 0 l-6 -14" stroke="#2f8a63" stroke-width="4" stroke-linecap="round"/>
-              <circle cx="-2" cy="-2" r="4" fill="#E8B84B"/>
-            </g>
-            <path d="M20 90 A100 22 0 0 0 220 90 L190 90 A70 14 0 0 1 50 90 Z" fill="#141419"/>
-            <path d="M20 90 A100 22 0 0 0 220 90" fill="none" stroke="#3a3a46" stroke-width="1.5"/>
-            <ellipse cx="120" cy="206" rx="70" ry="10" fill="#000" opacity=".25" transform="translate(0 14)"/>
-          </svg>
-        </button>
+          <img class="hat-front" src="hat-front.webp" alt="" width="300" height="206">
+        </div>
+        <img class="wand idle" id="wand" src="wand.webp" alt="" width="104" height="143">
+        <div class="sparks" id="sparks"></div>
+        <button class="hat-hit" id="hat-btn" type="button" aria-label="Tap the hat with the wand"></button>
       </div>
       <p class="tap-hint" id="tap-hint" aria-live="polite">Tap the hat.</p>
 
@@ -612,6 +603,9 @@ const DRAW = {
   const steps = dlg.querySelectorAll("[data-step]");
   const namesEl = document.getElementById("names");
   const hatBtn = document.getElementById("hat-btn");
+  const rig = document.getElementById("rig");
+  const wand = document.getElementById("wand");
+  const sparks = document.getElementById("sparks");
   const slip = document.getElementById("slip");
   const slipName = document.getElementById("slip-name");
   const hint = document.getElementById("tap-hint");
@@ -672,13 +666,14 @@ const DRAW = {
 
   function resetHat() {
     busy = false;
-    slip.getAnimations().forEach(a => a.cancel());
-    hatBtn.getAnimations().forEach(a => a.cancel());
+    [slip, rig, wand].forEach(el => el.getAnimations().forEach(a => a.cancel()));
+    sparks.innerHTML = "";
     slip.className = "slip";
     slip.style.visibility = "hidden";
-    hatBtn.className = "hat idle";
+    slip.style.transform = "";
+    rig.className = "rig idle";
+    wand.className = "wand idle";
     hatBtn.disabled = false;
-    hatBtn.style.opacity = "";
     after.hidden = true;
     notMePre.hidden = !!locked();
     hint.innerHTML = "Tap the hat.";
@@ -743,38 +738,59 @@ const DRAW = {
     revealLine.textContent = `${me}, you're making a gift for ${who}.`;
     revealLine.className = "sr-only";
 
+    const OUT = "translateY(-128px) scale(.34) rotate(-6deg)";
+    const CARD = "translateY(-138px) scale(1) rotate(-2deg)";
     if (reduced) {
-      hatBtn.className = "hat";
-      hatBtn.style.opacity = ".25";
+      rig.className = "rig dim"; wand.className = "wand dim";
       slip.style.visibility = "visible";
       slip.classList.add("free", "open");
-      slip.style.transform = "translateY(-120px) scale(1) rotate(-2deg)";
+      slip.style.transform = CARD;
       return finish();
     }
 
-    hint.textContent = "Rummaging…";
-    hatBtn.className = "hat shake";
-    await hatBtn.animate([
-      { transform: "rotate(0)" }, { transform: "rotate(-7deg)" }, { transform: "rotate(6deg)" },
-      { transform: "rotate(-5deg)" }, { transform: "rotate(4deg)" }, { transform: "rotate(-2deg)" },
-      { transform: "rotate(0)" }
-    ], { duration: 900, easing: "ease-in-out" }).finished;
-    hatBtn.className = "hat";
+    // 1. The wand taps the brim twice.
+    hint.textContent = "Abracadabra…";
+    rig.className = "rig"; wand.className = "wand";
+    const TAP = 1200;
+    const tapAt = [0.34, 0.72];
+    tapAt.forEach(f => setTimeout(() => {
+      sparkle();
+      rig.animate([{ transform: "translateY(0)" }, { transform: "translateY(4px) rotate(.6deg)" }, { transform: "translateY(0)" }],
+        { duration: 220, easing: "ease-out" });
+    }, TAP * f));
+    await wand.animate([
+      { transform: "translate(0, 0) rotate(0)" },
+      { transform: "translate(4px, -10px) rotate(6deg)", offset: .18 },
+      { transform: "translate(0, 24px) rotate(-10deg)", offset: .34 },
+      { transform: "translate(4px, -10px) rotate(6deg)", offset: .55 },
+      { transform: "translate(0, 24px) rotate(-10deg)", offset: .72 },
+      { transform: "translate(0, 0) rotate(0)" }
+    ], { duration: TAP, easing: "ease-in-out" }).finished;
 
+    // 2. The hat rummages.
+    hint.textContent = "Rummaging…";
+    rig.className = "rig shake";
+    await rig.animate([
+      { transform: "rotate(0)" }, { transform: "rotate(-4deg)" }, { transform: "rotate(3.5deg)" },
+      { transform: "rotate(-3deg)" }, { transform: "rotate(2deg)" }, { transform: "rotate(0)" }
+    ], { duration: 800, easing: "ease-in-out" }).finished;
+    rig.className = "rig";
+
+    // 3. A slip rises out of the opening…
     hint.textContent = "Got one…";
     slip.style.visibility = "visible";
     await slip.animate([
-      { transform: "translateY(0) scale(.3) rotate(-4deg)" },
-      { transform: "translateY(-150px) scale(.34) rotate(10deg)" }
-    ], { duration: 950, easing: "cubic-bezier(.2,.7,.2,1)", fill: "forwards" }).finished;
+      { transform: "translateY(0) scale(.3) rotate(9deg)" },
+      { transform: OUT }
+    ], { duration: 1000, easing: "cubic-bezier(.2,.7,.2,1)", fill: "forwards" }).finished;
 
+    // 4. …and unfolds toward you.
     slip.classList.add("free");
-    hatBtn.animate([{ opacity: 1, transform: "translateY(0)" }, { opacity: .25, transform: "translateY(24px)" }],
-      { duration: 600, easing: "ease-out", fill: "forwards" });
+    rig.classList.add("dim"); wand.classList.add("dim");
     await slip.animate([
-      { transform: "translateY(-150px) scale(.34) rotate(10deg)" },
-      { transform: "translateY(-130px) scale(1.04, .55) rotate(-4deg)", offset: .55 },
-      { transform: "translateY(-120px) scale(1) rotate(-2deg)" }
+      { transform: OUT },
+      { transform: "translateY(-134px) scale(1.04, .55) rotate(-4deg)", offset: .55 },
+      { transform: CARD }
     ], { duration: 800, easing: "cubic-bezier(.3,1.3,.5,1)", fill: "forwards" }).finished;
 
     slip.classList.add("open");
@@ -782,10 +798,27 @@ const DRAW = {
     finish();
   }
 
+  function sparkle() {
+    const st = sparks.getBoundingClientRect(), w = wand.getBoundingClientRect();
+    const x = w.left - st.left + 12, y = w.bottom - st.top - 12; // the wand's tip
+    for (let i = 0; i < 12; i++) {
+      const s = document.createElement("i");
+      s.textContent = i % 3 ? "✦" : "✧";
+      s.style.fontSize = `${10 + Math.random() * 12}px`;
+      sparks.appendChild(s);
+      const ang = Math.random() * Math.PI * 2, dist = 24 + Math.random() * 46;
+      s.animate([
+        { transform: `translate(${x}px, ${y}px) scale(.4)`, opacity: 1 },
+        { transform: `translate(${x + Math.cos(ang) * dist}px, ${y + Math.sin(ang) * dist}px) scale(1) rotate(90deg)`, opacity: 0 }
+      ], { duration: 650 + Math.random() * 350, easing: "cubic-bezier(.2,.8,.3,1)", fill: "forwards" })
+        .finished.then(() => s.remove());
+    }
+  }
+
   function finish() {
     hint.innerHTML = "";
     after.hidden = false;
-    after.querySelector(".btn-gold").focus();
+    after.querySelector(".btn-gold").focus({ preventScroll: true }); // keep the name card in view
   }
 
   function confetti() {
@@ -857,12 +890,12 @@ const DRAW = {
     continueBtn.hidden = true;
   }
 
-  function goHat() { stopVideo(); markSeen(); showScreen("hat"); }
+  function toHatScreen() { stopVideo(); markSeen(); showScreen("hat"); }
 
   function videoEnded() {
     markSeen();
     clearInterval(pollTimer);
-    advanceTimer = setTimeout(goHat, 2500); // let the end card land first
+    advanceTimer = setTimeout(toHatScreen, 2500); // let the end card land first
   }
 
   function startStandalone() {
@@ -911,9 +944,9 @@ const DRAW = {
   video.addEventListener("ended", videoEnded);
   document.getElementById("play").addEventListener("click", startVideo);
   document.getElementById("watch-again").addEventListener("click", startVideo);
-  skipIntro.addEventListener("click", goHat);
-  skipVideo.addEventListener("click", goHat);
-  continueBtn.addEventListener("click", goHat);
+  skipIntro.addEventListener("click", toHatScreen);
+  skipVideo.addEventListener("click", toHatScreen);
+  continueBtn.addEventListener("click", toHatScreen);
 
   skipIntro.hidden = !seen();
   showScreen("intro");
