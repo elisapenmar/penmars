@@ -648,13 +648,15 @@ const DRAW = {
     lock(n); // re-sync whichever store was missing
     return n;
   }
+  // Scope the cookie to this page's folder; other sites share the github.io origin.
+  const COOKIE_PATH = location.pathname.replace(/[^/]*$/, "") || "/";
   function lock(n) {
     try { localStorage.setItem(LOCK_KEY, n); } catch (e) {}
-    document.cookie = `penmars_lock=${encodeURIComponent(n)}; max-age=31536000; path=/; SameSite=Lax`;
+    document.cookie = `penmars_lock=${encodeURIComponent(n)}; max-age=31536000; path=${COOKIE_PATH}; SameSite=Lax`;
   }
   function unlock() {
     try { localStorage.removeItem(LOCK_KEY); } catch (e) {}
-    document.cookie = "penmars_lock=; max-age=0; path=/; SameSite=Lax";
+    document.cookie = `penmars_lock=; max-age=0; path=${COOKIE_PATH}; SameSite=Lax`;
   }
 
   function setMe(n) {
