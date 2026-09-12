@@ -62,21 +62,21 @@
       var(--midnight);
     color: var(--gold);
     text-align: center;
-    padding: 30px 24px 34px;
+    padding: 18px 20px 22px;
   }
   .candles {
     display: flex; justify-content: center; align-items: flex-end;
-    gap: 9px; height: 44px; margin: 0 auto 14px;
+    gap: 7px; height: 30px; margin: 0 auto 10px;
   }
   .candle {
-    width: 6px; height: 26px; border-radius: 2px;
+    width: 5px; height: 18px; border-radius: 2px;
     background: linear-gradient(#f8e8c0, #d9c28d);
     position: relative;
   }
-  .candle.shammash { height: 40px; }
+  .candle.shammash { height: 28px; }
   .candle::before {
-    content: ""; position: absolute; left: 50%; top: -13px;
-    width: 8px; height: 12px; margin-left: -4px;
+    content: ""; position: absolute; left: 50%; top: -10px;
+    width: 7px; height: 10px; margin-left: -3.5px;
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     background: radial-gradient(circle at 50% 70%, #fff6d6 0 25%, var(--gold) 45%, #e0782b 80%);
     box-shadow: 0 0 12px 3px #e8b84b66;
@@ -97,23 +97,23 @@
   }
   .hero h1 {
     font-family: var(--serif); font-weight: 900;
-    font-size: clamp(40px, 11vw, 76px);
+    font-size: clamp(36px, 9.6vw, 64px);
     line-height: .95; letter-spacing: -.01em;
     margin: 0;
     background: linear-gradient(180deg, #FBE7A6 0%, var(--gold) 45%, #B8862B 100%);
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .hero .at {
-    font-family: var(--serif); font-size: 22px; color: var(--gold-soft);
-    margin: 4px 0 18px;
+    font-family: var(--serif); font-size: 19px; color: var(--gold-soft);
+    margin: 2px 0 14px;
   }
   .when {
     display: inline-block;
     font-family: var(--sans); font-weight: 800;
-    font-size: clamp(16px, 4.6vw, 22px); line-height: 1.25;
+    font-size: clamp(14px, 4vw, 19px); line-height: 1.25;
     letter-spacing: .08em; text-transform: uppercase;
     color: var(--midnight); background: var(--gold);
-    padding: 12px 20px; border-radius: 6px;
+    padding: 9px 16px; border-radius: 6px;
     transform: rotate(-1.5deg);
   }
   .when span { display: block; white-space: nowrap; }
@@ -184,13 +184,16 @@
   .player .continue:hover, .player .continue:active { transform: translateX(-50%); }
 
   /* ---------- Screen 3 ---------- */
+  .again-wrap { text-align: center; margin: 26px 0 0; }
   .again {
-    display: inline-block; margin-top: 18px;
+    display: inline-block; margin-top: 12px;
     border: 0; background: none; padding: 6px;
     color: var(--gold-soft); font-size: 14px; font-weight: 600;
     text-decoration: underline; text-underline-offset: 4px; text-decoration-color: #f6dc9a66;
   }
   .again:hover { color: var(--gold); }
+  .again-wrap .again { color: var(--muted); text-decoration-color: #6b5f5266; }
+  .again-wrap .again:hover { color: var(--cranberry); }
   .fade-in { animation: fadeIn .7s ease both; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -199,7 +202,7 @@
     background: var(--cranberry);
     color: var(--cream);
     text-align: center;
-    padding: 56px 24px 60px;
+    padding: 26px 20px 34px;
     position: relative;
   }
   .hat-cta::before, .hat-cta::after {
@@ -215,10 +218,10 @@
   }
   .hat-cta h2 {
     font-family: var(--sans); font-weight: 800;
-    font-size: clamp(34px, 9vw, 52px); line-height: 1.05;
-    margin: 0 0 14px; transform: rotate(-2deg);
+    font-size: clamp(28px, 7.4vw, 44px); line-height: 1.05;
+    margin: 0 0 10px; transform: rotate(-2deg);
   }
-  .hat-cta p.lede { max-width: 30em; margin: 0 auto 28px; font-size: 17px; }
+  .hat-cta p.lede { max-width: 26em; margin: 0 auto 20px; font-size: 16px; }
   .btn-gold {
     border: 0; border-radius: 999px;
     background: var(--gold); color: var(--midnight);
@@ -229,7 +232,7 @@
   }
   .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #a87a22, 0 14px 28px -8px #0006; }
   .btn-gold:active { transform: translateY(4px); box-shadow: 0 1px 0 #a87a22, 0 4px 10px -4px #0006; }
-  .hat-cta .fineprint { font-size: 14px; opacity: .85; max-width: 26em; margin: 22px auto 0; }
+  .hat-cta .fineprint { font-size: 13.5px; opacity: .85; max-width: 26em; margin: 16px auto 0; }
 
   /* ---------- Details ---------- */
   .details { padding: 56px 20px 24px; max-width: 980px; margin: 0 auto; }
@@ -465,13 +468,12 @@
   <h1>Christmakah</h1>
   <p class="at">at the Penmars</p>
   <p class="when"><span>Sunday, December 13</span><span class="time">3:00 PM</span></p>
-  <br><button class="again" id="watch-again" type="button">▶ Watch the video again</button>
 </header>
 
 <section class="hat-cta" id="hat">
   <p class="eyebrow">Secret Santa</p>
   <h2>And yes, there are rules.</h2>
-  <p class="lede">Everyone draws one name. You make that person one homemade gift. Its only job is to make them feel loved, appreciated, and good about themselves.</p>
+  <p class="lede">Everyone draws one name, and makes that person one homemade gift.</p>
   <button class="btn-gold" id="open-draw" type="button">Reach into the hat</button>
   <p class="fineprint">Forgot who you got? Come back and pick your name again. The hat always gives the same answer, on any device.</p>
 </section>
@@ -502,6 +504,8 @@
     </article>
   </div>
 </section>
+
+<p class="again-wrap"><button class="again" id="watch-again" type="button">▶ Watch the video again</button></p>
 
 <footer>
   The Earth is turning. The food is going.<br><em>Come be together.</em>
