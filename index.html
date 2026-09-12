@@ -33,6 +33,7 @@
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
+  body { overflow-x: hidden; }
   body {
     margin: 0;
     background: var(--cream);
@@ -218,10 +219,43 @@
   }
   .hat-cta h2 {
     font-family: var(--sans); font-weight: 800;
-    font-size: clamp(28px, 7.4vw, 44px); line-height: 1.05;
-    margin: 0 0 10px; transform: rotate(-2deg);
+    font-size: clamp(38px, 10.4vw, 60px); line-height: 1;
+    letter-spacing: -.02em; margin: 0 0 6px; transform: rotate(-2deg);
   }
-  .hat-cta p.lede { max-width: 26em; margin: 0 auto 20px; font-size: 16px; }
+  .cta-sub {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(18px, 4.8vw, 24px); color: var(--gold-soft);
+    margin: 0 0 16px;
+  }
+
+  /* the hat itself is the button */
+  .draw-row { position: relative; display: inline-block; }
+  .hat-button {
+    position: relative; display: block; width: 190px; height: 133px;
+    border: 0; padding: 0; background: none; border-radius: 14px;
+    transition: transform .16s ease;
+  }
+  .hat-button:hover { transform: translateY(-3px); }
+  .hat-button:active { transform: translateY(1px); }
+  .hat-button:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
+  .mini-rig {
+    position: absolute; left: 50%; top: 0; width: 300px; height: 206px;
+    margin-left: -150px; transform: scale(.633); transform-origin: 50% 0;
+    filter: drop-shadow(0 0 20px #00000055);
+  }
+  .hat-button:hover .mini-rig { filter: drop-shadow(0 0 22px #e8b84b88); }
+  .click-here {
+    position: absolute; left: calc(50% + 64px); top: -22px;
+    display: flex; flex-direction: column; align-items: flex-start;
+    color: var(--gold); pointer-events: none;
+  }
+  .click-here svg { width: 74px; height: 57px; flex: none; margin: -2px 0 0 -8px; }
+  .ch-label {
+    font-family: var(--hand); font-weight: 700; font-size: 26px; line-height: 1;
+    transform: rotate(-6deg); white-space: nowrap;
+  }
+  @media (max-width: 400px) { .click-here { left: calc(50% + 54px); } .ch-label { font-size: 23px; } }
+  .hat-cta p.lede { max-width: 26em; margin: 18px auto 0; font-size: 16px; }
   .btn-gold {
     border: 0; border-radius: 999px;
     background: var(--gold); color: var(--midnight);
@@ -232,7 +266,7 @@
   }
   .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #a87a22, 0 14px 28px -8px #0006; }
   .btn-gold:active { transform: translateY(4px); box-shadow: 0 1px 0 #a87a22, 0 4px 10px -4px #0006; }
-  .hat-cta .fineprint { font-size: 13.5px; opacity: .85; max-width: 26em; margin: 16px auto 0; }
+  .hat-cta .fineprint { font-size: 13.5px; opacity: .85; max-width: 26em; margin: 10px auto 0; }
 
   /* ---------- Details ---------- */
   .details { padding: 56px 20px 24px; max-width: 980px; margin: 0 auto; }
@@ -471,10 +505,27 @@
 </header>
 
 <section class="hat-cta" id="hat">
-  <p class="eyebrow">Secret Santa</p>
-  <h2>And yes, there are rules.</h2>
+  <h2>Secret Santa</h2>
+  <p class="cta-sub">And yes, there are rules.</p>
+  <div class="draw-row">
+    <button class="hat-button" id="open-draw" type="button" aria-label="Reach into the hat">
+      <span class="mini-rig">
+        <img class="hat-back" src="hat.webp" alt="" width="300" height="206">
+        <span class="peek" style="left:120px;top:20px;--r:-13deg"></span>
+        <span class="peek" style="left:141px;top:12px;--r:3deg"></span>
+        <span class="peek" style="left:162px;top:19px;--r:16deg"></span>
+        <img class="hat-front" src="hat-front.webp" alt="" width="300" height="206">
+      </span>
+    </button>
+    <span class="click-here" aria-hidden="true">
+      <span class="ch-label">click here</span>
+      <svg viewBox="0 0 96 74" fill="none" stroke="currentColor" stroke-linecap="round">
+        <path d="M84 6 C 68 26, 48 32, 27 47" stroke-dasharray="0.1 9" stroke-width="5"/>
+        <path d="M26 28 L 22 50 L 44 53" stroke-width="4" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </div>
   <p class="lede">Everyone draws one name, and makes that person one homemade gift.</p>
-  <button class="btn-gold" id="open-draw" type="button">Reach into the hat</button>
   <p class="fineprint">Forgot who you got? Come back and pick your name again. The hat always gives the same answer, on any device.</p>
 </section>
 
@@ -715,7 +766,8 @@ const DRAW = {
 
   function updateCta() {
     const r = locked();
-    openBtn.textContent = r ? `Remind me who I have` : "Reach into the hat";
+    openBtn.setAttribute("aria-label", r ? "Remind me who I have" : "Reach into the hat");
+    document.querySelector(".ch-label").textContent = r ? "remind me" : "click here";
   }
 
   openBtn.addEventListener("click", () => {
