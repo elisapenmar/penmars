@@ -592,7 +592,7 @@
           <span class="peek" style="left:141px;top:12px;--r:3deg"></span>
           <span class="peek" style="left:162px;top:19px;--r:16deg"></span>
           <div class="slip" id="slip" aria-hidden="true">
-          <span class="for">You're making a gift for</span>
+          <span class="for">Your person is</span>
           <span class="who" id="slip-name"></span>
           <span class="star">✦ ✡ ✦</span>
         </div>
@@ -606,7 +606,7 @@
 
       <div class="after" id="after" hidden>
         <p id="reveal-line" class="visually-plain"></p>
-        <p>Make them something that makes them feel <strong>loved, appreciated, and good about themselves</strong>. Homemade only. We will know.</p>
+        <p>Now get them something that fits the theme: <strong>Experience!</strong> Be prepared to explain how it relates, if it isn’t obvious.</p>
         <div class="row">
           <button class="btn-gold" type="button" data-close>Got it</button>
         </div>
@@ -786,7 +786,7 @@ const DRAW = {
       : `This device is locked to ${me}. Tapped the wrong name? Tell Elisa.`;
     slipName.textContent = who;
     slipName.style.fontSize = who.length > 8 ? `${Math.floor(64 * 8 / who.length)}px` : "";
-    revealLine.textContent = `${me}, you're making a gift for ${who}.`;
+    revealLine.textContent = `${me}, your person is ${who}.`;
     revealLine.className = "sr-only";
 
     const OUT = "translateY(-128px) scale(.34) rotate(-6deg)";
@@ -902,7 +902,7 @@ const DRAW = {
   // ----- Screens: envelope -> video -> hat -----
   // Prefer message.mp4. Until it exists, fall back to the Claude Design
   // standalone export (~18 MB), which only loads once someone taps play.
-  const STANDALONE_END = 117.6; // seconds; fallback if the export's scene list can't be read
+  const STANDALONE_END = 101.8; // seconds; fallback if the export's scene list can't be read
   const SEEN_KEY = "penmars.seen";
   const intro = document.getElementById("intro");
   const player = document.getElementById("player");
